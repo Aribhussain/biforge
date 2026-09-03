@@ -1,0 +1,1 @@
+<134>Jan 15 10:23:01 fw01 %ASA-6-106100: access-list OUTSIDE_IN permitted tcp OUTSIDE/203.0.113.5(51321) -> INSIDE/10.1.2.30(443) hit-cnt 1

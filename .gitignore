@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+venv/
+.env
+*.bin
+mongo_data/
+opensearch_data/
+ollama_data/
+secrets/mongo_pw.txt
+.DS_Store

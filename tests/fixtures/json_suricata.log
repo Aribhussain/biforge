@@ -1,0 +1,2 @@
+{"timestamp":"2026-09-03T10:15:30.123456+0000","event_type":"dns","src_ip":"192.168.1.50","src_port":53210,"dest_ip":"8.8.8.8","dest_port":53,"proto":"UDP","dns":{"type":"query","rrname":"api.github.com","rrtype":"A"}}
+{"timestamp":"2026-09-03T10:15:31.654321+0000","event_type":"http","src_ip":"192.168.1.100","src_port":49152,"dest_ip":"185.199.108.153","dest_port":80,"proto":"TCP","http":{"hostname":"github.com","url":"/","http_method":"GET","status":200}}
