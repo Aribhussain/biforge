@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:latest
+    command:
+      - redpanda
+      - start
+      - --mode=dev-container
+      - --smp=1
+    ports:
+      - "9092:9092"
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: tf_admin
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_pw
+    ports:
+      - "27017:27017"
+    secrets:
+      - mongo_pw
+
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true
+    ports:
+      - "9200:9200"
+
+  ingestion-api:
+    build:
+      context: .
+      dockerfile: ingestion-api/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redpanda
+
+  parsing-worker:
+    build:
+      context: .
+      dockerfile: parsing-worker/Dockerfile
+    depends_on:
+      - redpanda
+      - mongodb
+      - opensearch
+      
+  audit-worker:
+    build:
+      context: .
+      dockerfile: audit-worker/Dockerfile
+    depends_on:
+      - mongodb
+      - opensearch
+
+secrets:
+  mongo_pw:
+    file: ./secrets/mongo_pw.txt
