@@ -1,0 +1,9 @@
+pydantic>=2.6.0
+pydantic-settings>=2.1.0
+pymongo>=4.6.0
+opensearch-py>=2.4.0
+fastapi>=0.109.0
+uvicorn>=0.27.0
+kafka-python-ng>=2.2.2
+drain3>=0.9.11
+numpy>=1.26.0
