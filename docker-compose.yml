@@ -57,6 +57,16 @@ services:
       - mongodb
       - opensearch
 
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:latest
+    ports:
+      - "5601:5601"
+    environment:
+      - OPENSEARCH_HOSTS=["http://opensearch:9200"]
+      - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
+    depends_on:
+      - opensearch
+
 secrets:
   mongo_pw:
     file: ./secrets/mongo_pw.txt
