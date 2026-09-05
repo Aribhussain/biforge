@@ -6,6 +6,7 @@ from drain3.template_miner_config import TemplateMinerConfig
 from common.config import settings
 from common.db_clients import get_mongo_db, ensure_opensearch_index, get_opensearch_client
 from .tier0_parsers import parse_tier0
+from datetime import datetime, timezone
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("biforge.parsing")
@@ -48,6 +49,7 @@ def process_stream():
             
         # 3. OCSF Normalization & Indexing
         ocsf_doc = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "class_uid": 4001,
             "category_uid": 4,
             "activity_name": "Network Traffic",
