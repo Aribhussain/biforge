@@ -56,6 +56,16 @@ services:
     depends_on:
       - mongodb
       - opensearch
+  tiebreaker-worker:
+    build:
+      context: .
+      dockerfile: tiebreaker-worker/Dockerfile
+    depends_on:
+      - redpanda
+      - mongodb
+      - opensearch
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest

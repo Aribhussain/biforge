@@ -13,4 +13,4 @@ COPY ingestion-api/ ./ingestion-api/
 EXPOSE 8000
 
 # Run FastAPI
-CMD ["uvicorn", "ingestion-api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "ingestion-api.main:app", "--host", "0.0.0.0", "--port", "8000"]/3 s .
