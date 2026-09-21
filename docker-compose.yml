@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   redpanda:
-    image: docker.redpanda.com/redpandadata/redpanda:latest
+    image: docker.redpanda.com/redpandadata/redpanda:v23.3.10
     command:
       - redpanda
       - start
@@ -14,7 +14,7 @@ services:
       - "9092:9092"
 
   mongodb:
-    image: mongo:latest
+    image: mongo:7.0.5
     environment:
       MONGO_INITDB_ROOT_USERNAME: tf_admin
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_pw
@@ -24,7 +24,7 @@ services:
       - mongo_pw
 
   opensearch:
-    image: opensearchproject/opensearch:latest
+    image: opensearchproject/opensearch:2.11.1
     environment:
       - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
@@ -56,6 +56,7 @@ services:
     depends_on:
       - mongodb
       - opensearch
+
   tiebreaker-worker:
     build:
       context: .
@@ -68,7 +69,7 @@ services:
       - "host.docker.internal:host-gateway"
 
   opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:latest
+    image: opensearchproject/opensearch-dashboards:2.11.1
     ports:
       - "5601:5601"
     environment:
