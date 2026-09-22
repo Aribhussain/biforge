@@ -1,0 +1,9 @@
+sources:
+  - name: "fortinet_firewall"
+    port: 5140
+    protocol: "udp"
+    ocsf_class: "network.firewall"
+  - name: "cisco_vpn"
+    port: 5150
+    protocol: "tcp"
+    ocsf_class: "network.vpn"

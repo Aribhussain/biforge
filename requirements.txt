@@ -8,3 +8,4 @@ kafka-python-ng>=2.2.2
 drain3>=0.9.11
 numpy>=1.26.0
 requests>=2.31.0
+pyyaml>=6.0.1
