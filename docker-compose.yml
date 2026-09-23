@@ -8,10 +8,11 @@ services:
       - start
       - --mode=dev-container
       - --smp=1
-      - --kafka-addr=PLAINTEXT://0.0.0.0:9092
-      - --advertise-kafka-addr=PLAINTEXT://redpanda:9092
+      - --kafka-addr=INTERNAL://0.0.0.0:9092,OUTSIDE://0.0.0.0:19092
+      - --advertise-kafka-addr=INTERNAL://redpanda:9092,OUTSIDE://localhost:19092
     ports:
       - "9092:9092"
+      - "19092:19092"
 
   mongodb:
     image: mongo:7.0.5
